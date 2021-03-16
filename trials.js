@@ -10,7 +10,7 @@
 function outputAllItems(items) {
   for (const item of items) {
     console.log(item);
-  }
+  }()
 }
 
 
@@ -42,7 +42,7 @@ function getOddIndices(items) {
 
   for (const idx in items) {
     if (idx % 2 !== 0) {
-      result.push(items[idx]);
+      result.push(items[idx]); //look into .push(items[idx])
     }
   }
 
@@ -115,6 +115,9 @@ function snakeToCamel(string) {
   for (const word of string.split('_')) {
     camelCase.push(`${word[0].toUpperCase()}${word.slice(1)}`);
   }
+  // ${word[0].toUpperCase()} == first letter in word is uppercased
+  // ${word.slice(1)} == word[1:]
+
 
   return camelCase.join('');
 }
@@ -175,21 +178,32 @@ function truncate(string) {
 // false
 function hasBalancedParens(string) {
   let parens = 0;
+  let hasParens = false; 
 
   for (const char of string) {
     if (char === '(') {
       parens += 1;
+      
+      if (!hasParens) {
+        hasPrens = true;
+      }
+
     } else if (char === ')') {
       parens -= 1;
 
-      if (parens < 0) {
-        return false;
+      if (!hasParens) {
+          hasParens = true;
       }
+
+      if (paren < 0) {
+        return false;
+      } 
     }
   }
 
-  return parens < 0;
+  return hasParens && parens === 0;
 }
+
 
 
 // Return a compressed version of the given string.

@@ -7,7 +7,7 @@ def output_all_items(items):
 
 
 def get_all_evens(nums):
-    even_list = [num if num % 2 == 0 for num in nums]
+    even_list = [num for num in nums if num % 2 == 0]
     return even_list
 
 def get_odd_indices(items):
@@ -19,32 +19,80 @@ def get_odd_indices(items):
 
 
 def print_as_numbered_list(items):
-    pass  # TODO: replace this line with your code
+    i = 1
+    for item in items:
+        print(f"{i}. {item}")
+        i += 1
 
 
 def get_range(start, stop):
-    pass  # TODO: replace this line with your code
+    nums = [num for num in range(start, stop)]
+
+    return nums
 
 
 def censor_vowels(word):
-    pass  # TODO: replace this line with your code
+    """ 
+
+    >>> censor_vowels('cat')
+    'c*t'
+    
+    """
+    char = ''
+    for letter in word:
+        if letter in 'aeiou':
+            letter = '*'
+        char += letter
+
+    return char
 
 
 def snake_to_camel(string):
-    pass  # TODO: replace this line with your code
+    camelCase = []
+    for word in string.split('_'):
+        word.title()
+    
+    return word 
+
 
 
 def longest_word_length(words):
-    pass  # TODO: replace this line with your code
+    len_longest_word = len(words[0])
+    for word in words:
+        if len(word) > len_longest_word:
+            len_longest_word = len(word)
+    return len_longest_word
 
 
 def truncate(string):
-    pass  # TODO: replace this line with your code
+    result = []
+
+    for char in string:
+        if len(result) == 0 or char not in result[-1]:
+            result.append(char)
+    return "".join(result)
+    #in JS:  return result.join('');
 
 
 def has_balanced_parens(string):
-    pass  # TODO: replace this line with your code
+    parens = 0
 
+    if string[0] == ')':
+        return False #counting for if string has an unbalanced word
+    for char in string:
+        if char == '(':
+            parens += 1
+        else:
+            if char == ')':
+                parens -= 1
+
+    return parens == 0 
 
 def compress(string):
-    pass  # TODO: replace this line with your code
+   compressed = []
+
+   current_char = ''
+   char_count = 0
+
+   for char in string:
+       
